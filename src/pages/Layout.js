@@ -12,7 +12,7 @@ import {
 import {
     ChevronDownIcon,
 } from '@heroicons/react/solid'
-import { BrowserRouter as Router, Route, NavLink } from "react-router-dom";
+import { Route, NavLink } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { logout } from '../store/auth.store';
 

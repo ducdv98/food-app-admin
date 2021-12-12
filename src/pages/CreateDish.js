@@ -1,8 +1,8 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useLocation } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 import { Formik, Form, Field } from 'formik';
 import * as Yup from 'yup';
-import { createCategory, getCategories } from "../store/category.store";
+import { getCategories } from "../store/category.store";
 import { useEffect } from "react";
 import { createDish } from "../store/dish.store";
 
@@ -38,7 +38,7 @@ export default function CreateDish() {
             desc: formValue.desc,
             category: formValue.category,
             price: formValue.price,
-            images: formValue.images.split(','),
+            images: formValue.images.split('\n'),
         }
 
         await dispatch(createDish(dish)).unwrap();
@@ -178,7 +178,7 @@ export default function CreateDish() {
                                             )}
                                         </Field>
                                         <p className="mt-2 text-sm text-gray-500">Vui lòng đặt các đường dẫn hình ảnh và
-                                            đảm bảo rằng chúng được phân cách bởi dấu phẩy.</p>
+                                            đảm bảo rằng chúng được phân cách bởi kí tự xuống dòng (Enter)</p>
                                     </div>
                                 </div>
                             </div>
@@ -189,6 +189,7 @@ export default function CreateDish() {
                         <div className="flex justify-end">
                             <button
                                 type="button"
+                                onClick={() => history.goBack()}
                                 className="bg-white py-2 px-4 border border-gray-300 rounded-md shadow-sm text-sm font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
                             >
                                 Hủy bỏ

@@ -1,7 +1,7 @@
 import { ChevronRightIcon } from '@heroicons/react/solid'
 import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
-import { Disclosure, Menu, Transition } from '@headlessui/react'
+import { Menu } from '@headlessui/react'
 import {
     ChevronDownIcon,
     SortAscendingIcon

@@ -14,10 +14,15 @@ const createDish = ({ name, desc, price, images, category }) => {
     return axios.post(API_URL + 'admin/dishes/create', { name, desc, price, images, category }, { headers: authHeader() });
 };
 
+const updateDish = ({ id, name, desc, price, images, category }) => {
+    return axios.post(API_URL + 'admin/dishes/update', { id, name, desc, price, images, category }, { headers: authHeader() });
+};
+
 const dishService = {
     getDishes,
     getDishById,
     createDish,
+    updateDish,
 };
 
 export default dishService;

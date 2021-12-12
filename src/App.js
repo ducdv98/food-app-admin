@@ -16,6 +16,8 @@ import Categories from "./pages/Categories";
 import CreateCategory from "./pages/CreateCategory";
 import Dishes from "./pages/Dishes";
 import CreateDish from "./pages/CreateDish";
+import DishDetails from "./pages/DishDetails";
+import CategoryDetails from "./pages/CategoryDetails";
 
 const App = () => {
   const { user } = useSelector((state) => state.auth);
@@ -52,9 +54,11 @@ const App = () => {
             <Route exact path={'/orders'} component={Orders} />
             <Route exact path={'/orders/:id'} component={OrderDetails} />
             <Route exact path={'/categories'} component={Categories} />
-            <Route exact path={'/categories/create'} component={CreateCategory} />
+            <Route exact strict path={'/categories/create/'} component={CreateCategory} />
+            <Route exact strict path={'/categories/:id'} component={CategoryDetails} />
             <Route exact path={'/dishes'} component={Dishes} />
-            <Route exact path={'/dishes/create'} component={CreateDish} />
+            <Route exact strict path={'/dishes/create/'} component={CreateDish} />
+            <Route exact strict path={'/dishes/:id'} component={DishDetails} />
           </Layout>
         </PrivateRoute>
 

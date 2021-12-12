@@ -10,9 +10,14 @@ const createCategory = ({ name, desc }) => {
     return axios.post(API_URL + 'admin/categories/create', { name, desc }, { headers: authHeader() });
 };
 
+const updateCategory = ({ id, name, desc }) => {
+    return axios.post(API_URL + 'admin/categories/update', { id, name, desc }, { headers: authHeader() });
+};
+
 const categoryService = {
     getCategories,
-    createCategory
+    createCategory,
+    updateCategory
 };
 
 export default categoryService;

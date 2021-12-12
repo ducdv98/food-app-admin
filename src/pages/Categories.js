@@ -1,4 +1,3 @@
-import { PaperClipIcon } from '@heroicons/react/solid'
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom';
@@ -35,12 +34,13 @@ export default function Categories() {
                                     {!!c.desc ? c.desc : "<Không có mô tả>"}
                                 </span>
                                 <span className="ml-4 flex-shrink-0 sm:col-span-1">
-                                    <button
+                                    <Link
+                                        to={`categories/${c.id}`}
                                         type="button"
-                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+                                        className="bg-white rounded-md font-medium text-indigo-600 hover:text-indigo-500 focus:outline-none"
                                     >
                                         #{c.id}
-                                    </button>
+                                    </Link>
                                 </span>
                             </dd>
                         </div>

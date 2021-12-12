@@ -99,6 +99,42 @@ export const createDish = createAsyncThunk(
     }
 );
 
+export const updateDish = createAsyncThunk(
+    "dishes/updateDish",
+    async ({ id, name, desc, price, images, category }, thunkAPI) => {
+        try {
+            const response = await DishService.updateDish({ id, name, desc, price, images, category });
+            toast.success('Cập nhật thành công!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return response.data;
+        } catch (error) {
+            const message = (error.response &&
+                error.response.data &&
+                error.response.data.message) ||
+                error.message ||
+                error.toString();
+
+            toast.error('Có lỗi xảy ra, vui lòng thử lại!', {
+                position: "top-right",
+                autoClose: 5000,
+                hideProgressBar: false,
+                closeOnClick: true,
+                pauseOnHover: true,
+                draggable: true,
+                progress: undefined,
+            });
+            return thunkAPI.rejectWithValue(message);
+        }
+    }
+);
+
 const dishSlice = createSlice({
     name: "dishes",
     initialState,
@@ -123,6 +159,19 @@ const dishSlice = createSlice({
             state.dishes.push(action.payload);
         });
         builder.addCase(createDish.rejected, (state, action) => {
+            state.dishLoading = false;
+            state.error = action.payload
+        });
+
+        builder.addCase(updateDish.pending, (state, action) => {
+            state.dishLoading = true;
+        });
+        builder.addCase(updateDish.fulfilled, (state, action) => {
+            state.dishLoading = false;
+            const index = state.dishes.findIndex(d => d.id === action.payload.id);
+            state.dishes[index] = action.payload;
+        });
+        builder.addCase(updateDish.rejected, (state, action) => {
             state.dishLoading = false;
             state.error = action.payload
         });

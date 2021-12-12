@@ -1,6 +1,5 @@
 import { useEffect } from 'react'
 import {
-    ScaleIcon,
     DocumentTextIcon,
     CurrencyDollarIcon,
     GiftIcon,
